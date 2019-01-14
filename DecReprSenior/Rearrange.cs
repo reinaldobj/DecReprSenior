@@ -26,12 +26,11 @@ namespace DecReprSenior
 
             char[] numbers = N.ToString().ToCharArray();
 
-            char[] ordenedNumbers = Sort(numbers);
-            char[] reverseNumbers = Reverse(numbers);
+            char[] maxRearrangeNumbers = SortDescending(numbers);
 
-            int maxRearrange = int.Parse(new string(reverseNumbers));
+            int maxRearrange = int.Parse(new string(maxRearrangeNumbers));
 
-            if(maxRearrange > 100000000)
+            if (maxRearrange > 100000000)
             {
                 return -1;
             }
@@ -39,13 +38,13 @@ namespace DecReprSenior
             return maxRearrange;
         }
 
-        private char[] Sort(char[] numbers)
+        private char[] SortDescending(char[] numbers)
         {
-            for (int i = 0; i <= Numbers.Length - 1; i++)
+            for (int i = 0; i < Numbers.Length - 1; i++)
             {
-                for (int j = 1; j <= Numbers.Length - 1; j++)
+                for (int j = i + 1; j < Numbers.Length; j++)
                 {
-                    if (numbers[j] < numbers[j - 1])
+                    if (numbers[i] < numbers[j])
                     {
                         char t = numbers[i];
                         numbers[i] = numbers[j];
@@ -55,19 +54,6 @@ namespace DecReprSenior
             }
 
             return numbers;
-        }
-
-        private char[] Reverse(char[] numbers)
-        {
-            char[] reverseNumbers = new char[numbers.Length];
-
-            int s = Numbers.Length - 1;
-            for (int i = 0; i <= s; i++)
-            {
-                reverseNumbers[s - i] = numbers[i];
-            }
-
-            return reverseNumbers;
         }
     }
 }
